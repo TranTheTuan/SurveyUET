@@ -12,7 +12,7 @@ class Survey extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function question() {
+    public function questions() {
         return $this->hasMany('App\Question');
     }
 }
