@@ -14,20 +14,20 @@
                         @if($question->type == 1)
                             @foreach($question->options as $key => $option)
                                 <p class="ml-3 mt-1">
-                                    <input type="checkbox" id="{{ $question->id . $key }}" name="{{ 'option' . $question->id}}[]" value="{{ $option->id }}"/>
+                                    <input type="checkbox" id="{{ $question->id . $key }}" name="{{ $question->id}}[]" value="{{ $option->id }}"/>
                                     <label for="{{ $question->id . $key }}">{{ $option->choice }}</label>
                                 </p>
                             @endforeach
                         @elseif($question->type == 2)
                             @foreach($question->options as $key => $option)
                                 <p class="ml-3 mt-1">
-                                    <input type="radio" id="{{ $question->id . $key }}" name="{{ 'option' . $question->id }}" value="{{ $option->id }}"/>
+                                    <input type="radio" id="{{ $question->id . $key }}" name="{{ $question->id }}" value="{{ $option->id }}"/>
                                     <label for="{{ $question->id . $key }}">{{ $option->choice }}</label>
                                 </p>
                             @endforeach
                         @else
                             <div class="form-group">
-                                <textarea class="form-control ml-3 mt-2 w-75" id="31" name="{{ 'option' . $question->id }}"></textarea>
+                                <textarea class="form-control ml-3 mt-2 w-75" id="31" name="{{ $question->id }}"></textarea>
                                 <label for="31"></label>
                             </div>
                         @endif

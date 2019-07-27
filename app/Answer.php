@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
-    protected $fillable = ['user_id', 'question_id', 'option_id'];
+    protected $fillable = ['user_id', 'question_id', 'option_id', 'text'];
 
     public function user() {
         return $this->belongsTo('App\User');

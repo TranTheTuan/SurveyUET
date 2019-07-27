@@ -96,6 +96,19 @@ class SurveyController extends Controller
 
     public function postAnswers(Request $request, Survey $survey)
     {
-        dd($request);
+        $uid = Auth::id();
+        foreach ($survey->questions as $question) {
+            $qid = $question->id;
+            if ($question->type == 1) {
+                foreach ($request->$qid as $check) {
+                    $this->answer->create(['user_id' => $uid, 'question_id' => $qid, 'option_id' => $check]);
+                }
+            } elseif ($question->type == 2) {
+                $this->answer->create(['user_id' => $uid, 'question_id' => $qid, 'option_id' => $request->$qid]);
+            } else {
+                $this->answer->create(['user_id' => $uid, 'question_id' => $qid, 'text' => $request->$qid]);
+            }
+        }
+        return redirect()->route('home');
     }
 }
