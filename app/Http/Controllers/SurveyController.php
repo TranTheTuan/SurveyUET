@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Charts\FusionChart;
+use App\Charts\HighChart;
+use App\Charts\SurveyChart;
 use App\Option;
 use App\Question;
 use App\Survey;
@@ -110,5 +113,27 @@ class SurveyController extends Controller
             }
         }
         return redirect()->route('home');
+    }
+
+    public function statistic(Survey $survey)
+    {
+        $charts = collect();
+        foreach ($survey->questions as $index => $question) {
+            if ($question->type != 3){
+                $dataset = collect();
+                $labels = collect();
+                $chart = new HighChart();
+                foreach ($question->options as $option) {
+                    $count = $option->answers->count();
+                    $label = $option->choice;
+                    $dataset->push($count);
+                    $labels->push($label);
+                }
+                $chart->labels($labels);
+                $chart->dataset('Questions #'.($index+1).': '.$question->label, 'line', $dataset);
+                $charts->push($chart);
+            }
+        }
+        return view('survey.statistic', ['survey' => $survey, 'charts' => $charts]);
     }
 }

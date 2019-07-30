@@ -26,6 +26,9 @@
                                 <a href="{{ route('take', $survey->id) }}" class="card-link">
                                     <i class="fas fa-laptop"></i> Take Survey
                                 </a>
+                                <a href="{{ route('statistic', $survey->id) }}" class="card-link">
+                                    <i class="far fa-chart-bar"></i> Statistic
+                                </a>
                             </div>
                         </div>
                     </li>

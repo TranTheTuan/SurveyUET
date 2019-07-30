@@ -12,7 +12,7 @@ class Option extends Model
         return $this->belongsTo('App\Question');
     }
 
-    public function answer() {
+    public function answers() {
         return $this->hasMany('App\Answer');
     }
 }
